@@ -1,4 +1,11 @@
 let submit_btn = document.getElementById('submit_btn')
+
+let ResponseBody = document.getElementById('ResponseBody')
+let RequestBody = document.getElementById('RequestBody')
+
+let statusText = document.getElementById('statusText')
+let planText = document.getElementById('planText')
+
 let selecteOption = document.getElementById('SelectBox')
 let selectedMethod
 
@@ -14,11 +21,13 @@ submit_btn.onclick = function () {
     if (selectedMethod === 'GET' || selectedMethod === 'SET' && !!url) {
 
         $.ajax({
-            url: url
-            ,
+            url: url,
             type: selectedMethod,
             success: function (response) {
                 console.log(response);
+                ResponseBody.innerHTML = JSON.stringify(response.data)
+                statusText.innerHTMLm = '200'
+                planText.innerHTMLm = '200'
             },
             error: function (err) {
                 console.log(err);
